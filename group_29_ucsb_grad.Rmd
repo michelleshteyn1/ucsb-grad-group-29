@@ -1,0 +1,33 @@
+---
+title: "Group 29 UCSB domestic grad enrollment"
+author: "Michelle Shteyn and James Gately"
+date: "11/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#Attach packages
+library(tidyverse)
+library(here)
+```
+
+
+```{r,include=FALSE}
+#Read in data
+ucsb_grad <- read_csv(here("data","ucsb_grad_data.csv"))
+
+```
+
+```{r}
+# Filter for year
+ucsb_grad_year <- ucsb_grad %>% 
+  filter(year != "2019-2020")
+
+# Creating ggplot
+ggplot(data = ucsb_grad_year, aes(x = year_abbr, y = domestic_enrollment, fill = ethnicity)) +
+  geom_col()
+
+```
+
